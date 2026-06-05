@@ -12,8 +12,8 @@
     <artifactId>forumly</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>forumly</name>
-    <description>forumly</description>
-    <url/>
+    <description>A self-contained forum application built with Spring Boot, Spring Security, and Thymeleaf.</description>
+    <url>https://github.com/domisko/formly</url>
     <licenses>
         <license/>
     </licenses>
@@ -90,6 +90,13 @@
             <artifactId>flyway-core</artifactId>
         </dependency>
     </dependencies>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <url>https://maven.pkg.github.com/domisko/formly</url>
+        </repository>
+    </distributionManagement>
 
     <build>
         <finalName>forumly-app</finalName>

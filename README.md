@@ -1,30 +1,69 @@
-# Forumly Application
+# Forumly
 
-This is a Basic Forum as a self-contained Spring Boot application with an embedded H2 database.
+A self-contained forum application built with Spring Boot. Users can register, create posts, leave comments, and vote — all secured with Spring Security and persisted via an embedded H2 database.
 
 ## Features
- - User Registration
- - User Login
- - User Logout
- - Forum Creation
- - Forum Posting
- - Forum Commenting
 
-## Prerequisites
+- User registration and authentication (Spring Security, BCrypt)
+- Create, browse, and read forum posts
+- Nested commenting on posts
+- Upvote / downvote posts
+- Schema migrations managed by Flyway
+- Deployable as a standalone JAR or via Docker
 
-- Java 17 or higher must be installed on your system.
-- You can verify your Java installation by opening a terminal or command prompt and running: `java -version`
+## Tech Stack
 
-## How to Run
+| Layer       | Technology                          |
+|-------------|-------------------------------------|
+| Backend     | Java 17, Spring Boot 3, Spring MVC  |
+| Security    | Spring Security 6                   |
+| Persistence | Spring Data JPA, H2 (file mode)     |
+| Migrations  | Flyway                              |
+| Templating  | Thymeleaf + Thymeleaf Security extras |
+| Build       | Maven                               |
+| Container   | Docker (multi-stage build)          |
+| Observability | Spring Boot Actuator              |
 
-1.  Unzip the `forumly-app.zip` file.
-2.  Navigate into the extracted folder.
-3.  Run the application either:
-   -   **With Docker:** ```docker compose -f docker/docker-compose.yml up -d```
-   -   **By command** in a shell: ```java -jar target/forumly-app.jar```
+## Getting Started
 
-## How to Access the Application
+**Prerequisites:** Java 17+
 
--   **Web Application**: Open your browser and go to [http://localhost:8080](http://localhost:8080)
+### Run with Docker
 
-When you run the application, a `data` directory will be created in the same folder, containing the database files.
+```bash
+docker compose -f docker/docker-compose.yml up -d
+```
+
+### Run as JAR
+
+```bash
+./mvnw clean package -DskipTests
+java -jar target/forumly-app.jar
+```
+
+Open [http://localhost:8080](http://localhost:8080) in your browser.
+
+A `data/` directory is created on first run to hold the H2 database files.
+
+## Project Structure
+
+```
+src/main/java/com/dominikmiskovic/forumly/
+├── config/          # Security and migration configuration
+├── controller/      # MVC controllers (Home, Post, Comment, Vote, Auth)
+├── dto/             # Request and response DTOs
+├── model/           # JPA entities (User, Post, Comment, Vote)
+├── repository/      # Spring Data repositories
+├── service/         # Business logic
+└── exception/       # Custom exceptions
+```
+
+## Architecture
+
+The app follows a standard layered MVC architecture. Spring Security handles authentication and route protection. Flyway runs versioned SQL migrations on startup. The H2 database runs in file mode so data survives restarts.
+
+```
+Browser → Thymeleaf templates ← Controllers → Services → Repositories → H2 (file)
+                                      ↑
+                               Spring Security
+```
