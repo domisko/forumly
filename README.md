@@ -11,6 +11,16 @@ A self-contained forum application built with Spring Boot. Users can register, c
 - Schema migrations managed by Flyway
 - Deployable as a standalone JAR or via Docker
 
+## Screenshots
+
+| Login | Feed |
+|-------|------|
+| ![Login](docs/screenshots/login.png) | ![Threads](docs/screenshots/threads.png) |
+
+| New Post | Post & Comments |
+|----------|-----------------|
+| ![Create Post](docs/screenshots/create_post.png) | ![Thread Comments](docs/screenshots/thread_comments.png) |
+
 ## Tech Stack
 
 | Layer       | Technology                          |
