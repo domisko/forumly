@@ -13,7 +13,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>forumly</name>
     <description>A self-contained forum application built with Spring Boot, Spring Security, and Thymeleaf.</description>
-    <url>https://github.com/domisko/formly</url>
+    <url>https://github.com/domisko/forumly</url>
     <licenses>
         <license/>
     </licenses>
